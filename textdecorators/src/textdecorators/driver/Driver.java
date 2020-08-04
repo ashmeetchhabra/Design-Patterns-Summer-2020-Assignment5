@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.InvalidPathException;
 
 import textdecorators.util.FileProcessor;
+import textdecorators.util.InputDetails;
 
 public class Driver {
 	private static final int REQUIRED_NUMBER_OF_CMDLINE_ARGS = 5;
@@ -20,20 +21,9 @@ public class Driver {
 			throw new RuntimeException("Incorrect number of arguments.");
 		}
 		
-		FileProcessor fp;
-		try {
-			fp = new FileProcessor(args[0]);
+		InputDetails id = new InputDetails(args[0], args[3]);
+		id.processFile();
 		
-		String line;
-		while ((line = fp.poll()) != null) {
-//			MyLogger.writeMessage("Reading of input file", DebugLevel.DRIVER);
-//			HashMap<String, Object> hm = (HashMap<String, Object>) lh.lineInputProcessor(line);
-//			th.insert(hm);
-		}
-		} catch (InvalidPathException | SecurityException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 	}
 
