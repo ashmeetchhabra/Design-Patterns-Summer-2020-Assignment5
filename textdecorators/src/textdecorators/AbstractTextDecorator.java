@@ -1,7 +1,11 @@
 package textdecorators;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.InvalidPathException;
+
 public abstract class AbstractTextDecorator {
-	abstract void processInputDetails();
+	public abstract void processInputDetails() throws InvalidPathException, SecurityException, FileNotFoundException, IOException;
 	
 
 }
