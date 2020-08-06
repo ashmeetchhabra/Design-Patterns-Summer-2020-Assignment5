@@ -16,6 +16,11 @@ public class MostFrequentWordDecorator extends AbstractTextDecorator {
 	AbstractTextDecorator dec;
 	InputDetails det;
 
+	/**
+	 * @param dec
+	 * @param det
+	 * @throws IOException
+	 */
 	public MostFrequentWordDecorator(AbstractTextDecorator dec, InputDetails det) throws IOException {
 		MyLogger.writeMessage("MostFrequentWordDecorator Constructor", DebugLevel.CONSTRUCTOR);
 		this.dec = dec;

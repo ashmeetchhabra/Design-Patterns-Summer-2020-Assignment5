@@ -16,6 +16,12 @@ public class KeywordDecorator extends AbstractTextDecorator {
 	InputDetails det;
 	String fileName;
 
+	/**
+	 * @param dec
+	 * @param det
+	 * @param fileName
+	 * @throws IOException
+	 */
 	public KeywordDecorator(AbstractTextDecorator dec, InputDetails det, String fileName) throws IOException {
 		MyLogger.writeMessage("KeywordDecorator Constructor", DebugLevel.CONSTRUCTOR);
 		this.dec = dec;

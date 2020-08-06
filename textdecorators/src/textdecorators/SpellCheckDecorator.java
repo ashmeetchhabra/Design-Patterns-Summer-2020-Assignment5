@@ -16,6 +16,12 @@ public class SpellCheckDecorator extends AbstractTextDecorator {
 	InputDetails det;
 	String fileName;
 
+	/**
+	 * @param dec
+	 * @param det
+	 * @param fileName
+	 * @throws IOException
+	 */
 	public SpellCheckDecorator(AbstractTextDecorator dec, InputDetails det, String fileName) throws IOException {
 		MyLogger.writeMessage("SpellCheckDecorator Constructor", DebugLevel.CONSTRUCTOR);
 		this.dec = dec;

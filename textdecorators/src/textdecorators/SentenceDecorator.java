@@ -14,6 +14,11 @@ public class SentenceDecorator extends AbstractTextDecorator {
 	private AbstractTextDecorator dec;
 	private InputDetails det;
 
+	/**
+	 * @param dec
+	 * @param det
+	 * @throws IOException
+	 */
 	public SentenceDecorator(AbstractTextDecorator dec, InputDetails det) throws IOException {
 		MyLogger.writeMessage("SentenceDecorator Constructor", DebugLevel.CONSTRUCTOR);
 		this.dec = dec;
