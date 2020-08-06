@@ -8,22 +8,29 @@ import java.util.List;
 
 import textdecorators.util.FileProcessor;
 import textdecorators.util.InputDetails;
+import textdecorators.util.MyLogger;
+import textdecorators.util.MyLogger.DebugLevel;
 
 public class KeywordDecorator extends AbstractTextDecorator {
 	AbstractTextDecorator dec;
 	InputDetails det;
 	String fileName;
 
-	public KeywordDecorator(AbstractTextDecorator dec, InputDetails det, String fileName) {
+	public KeywordDecorator(AbstractTextDecorator dec, InputDetails det, String fileName) throws IOException {
+		MyLogger.writeMessage("KeywordDecorator Constructor", DebugLevel.CONSTRUCTOR);
 		this.dec = dec;
 		this.det = det;
 		this.fileName = fileName;
 	}
 
+	/**
+	 *Processes the input and add a keyword decorator
+	 */
 	@Override
 	public void processInputDetails()
 			throws InvalidPathException, SecurityException, FileNotFoundException, IOException {
 		System.out.println("In Keyword Decorator");
+		MyLogger.writeMessage("In Keyword Decorators", DebugLevel.KEYWORDDECORATOR);
 		List<String> listOfKeywords = keywordParser();
 		List<String> listOfSentences1 = new ArrayList<String>();
 		List<String> listOfSentences = det.getListOfSentences();
@@ -40,6 +47,7 @@ public class KeywordDecorator extends AbstractTextDecorator {
 				sb.append(words[i] + " ");
 			}
 			String sentence1 = sb.toString();
+			MyLogger.writeMessage("KeyWordDecorator_"+sentence1+"_KeyWordDecorator", DebugLevel.KEYWORDDECORATOR);
 			listOfSentences1.add(sentence1);
 		}
 		det.setListOfSentences(listOfSentences1);
@@ -51,13 +59,17 @@ public class KeywordDecorator extends AbstractTextDecorator {
 	private List<String> keywordParser()
 			throws InvalidPathException, SecurityException, FileNotFoundException, IOException {
 
+		boolean isKeywordFileEmpty=true;
 		FileProcessor fp = new FileProcessor(fileName);
 		List<String> listOfKeywords = new ArrayList<String>();
 
 		String line;
 		while ((line = fp.poll()) != null) {
+			isKeywordFileEmpty=false;
 			listOfKeywords.add(line);
 		}
+		if(isKeywordFileEmpty)
+			throw new RuntimeException("Keyword file Empty");
 		return listOfKeywords;
 
 	}
